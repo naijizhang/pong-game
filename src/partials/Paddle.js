@@ -9,8 +9,15 @@ export default class Paddle {
     this.y = y;
     this.speed = 10;
     this.score = 0;
-  }
 
+    
+  }
+  up(){
+
+  }
+  down(){
+
+  }
   render(svg) {
     let paddle = document.createElementNS(SVG_NS, "rect");
     paddle.setAttributeNS(null, "width", this.width);
