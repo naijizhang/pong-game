@@ -6,3 +6,6 @@ export const KEYS = {
     down: "ArrowDown",     // player 2 down key
     spaceBar: " ", // we'll use this later...
   }
+  export const GAP= 10;
+  export const SPEED=10;
+  export const PADDLE_HEIGHT=56;
