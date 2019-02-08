@@ -5,6 +5,7 @@ export default class Ball {
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
+    this.ping = new Audio("public/sounds/pong-01.wav");
 
     this.reset();
   }
@@ -18,6 +19,12 @@ export default class Ball {
     }
     //setting a number between -5 and 5 depends on vy
     this.vx = this.direction * (6 - Math.abs(this.vy));
+
+    if(this.direction===1){
+        this.vx=Math.abs(this.vx);
+    }else{
+        this.vx=-Math.abs(this.vx);
+    }
   }
   wallCollision() {
     const hitTop = this.y - this.radius < 0;
@@ -43,11 +50,15 @@ export default class Ball {
         this.y <= bottomY
       ) {
         this.vx *= -1;
+        this.ping.play();
       }
 
       //edge detection top and bottom
-      if (this.x >= leftX && this.y >= topY && this.y <= bottomY) {
+      if (this.x >= leftX 
+        && this.y >= topY 
+        && this.y <= bottomY) {
         this.vy *= -1;
+        this.ping.play();
       }
     } else {
       //detect player1 collision
@@ -58,11 +69,15 @@ export default class Ball {
         this.y <= bottomY
       ) {
         this.vx *= -1;
+        this.ping.play();
       }
 
       //edge detection top and bottom
-      if (this.x <= rightX && this.y >= topY && this.y <= bottomY) {
+      if (this.x <= rightX 
+        && this.y >= topY 
+        && this.y <= bottomY) {
         this.vy *= -1;
+        this.ping.play();
       }
     }
   }
@@ -74,8 +89,8 @@ export default class Ball {
   }
 
   render(svg, player1, player2) {
-    this.x += this.direction * this.vx;
-    this.y += this.direction * this.vy;
+    this.x +=  this.vx;
+    this.y +=  this.vy;
     this.paddleCollision(player1, player2);
     this.wallCollision();
     let circle = document.createElementNS(SVG_NS, "circle");
@@ -86,15 +101,17 @@ export default class Ball {
     svg.appendChild(circle);
 
     //detect goal
-    const rightGoal = this.x + this.radius >= this.boardWidth;
-    const leftGoal = this.x - this.radius <= 0;
+    const leftGoal = this.x + this.radius >= this.boardWidth;
+    const rightGoal = this.x - this.radius <= 0;
     if (rightGoal) {
+        this.direction = -1;
       this.goal(player2);
-      this.direction = 1;
+      
     }
     if (leftGoal) {
+        this.direction = 1;
       this.goal(player1);
-      this.direction = -1;
+      
     }
   }
 }

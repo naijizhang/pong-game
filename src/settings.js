@@ -7,6 +7,6 @@ export const KEYS = {
     spaceBar: " ", // we'll use this later...
   }
   export const GAP= 10;
-  export const SPEED=10;
-  export const PADDLE_HEIGHT=100;
+  export const SPEED=30;
+  export const PADDLE_HEIGHT=50;
   export const BALL_RADIUS=8;

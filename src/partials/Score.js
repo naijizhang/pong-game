@@ -5,8 +5,15 @@ export default class Score {
       this.y = y;
       this.size = size;
     }
-    //<text x="SOME X" y="SOME Y" font-family="'Silkscreen Web', monotype" font-size="30" fill="white">THE SCORE</text>
-    render(){
-
+    // font-family="'Silkscreen Web', monotype" font-size="30" fill="white">THE SCORE</text>
+    render(svg, score){
+        let text = document.createElementNS(SVG_NS, "text");
+        text.setAttributeNS(null, "font-family","Silkscreen Web");
+        text.setAttributeNS(null, "font-size", this.size);
+        text.setAttributeNS(null, "x", this.x);
+        text.setAttributeNS(null, "y", this.y);
+        text.setAttributeNS(null, "fill", "white");
+        text.textContent=score;
+        svg.appendChild(text);
     }
   }
