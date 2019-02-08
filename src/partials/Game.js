@@ -13,7 +13,7 @@ export default class Game {
     this.height = height;
 
     //for paddle starting positions
-    this.paddleWidth = 8;
+    this.paddleWidth = 50;//8
     this.paddleHeight = PADDLE_HEIGHT;
     this.boardGap = GAP;
 

@@ -21,13 +21,13 @@ export default class Paddle {
       }
     });
   }
-//   coordinates(x, y, width, height) {
-//     let leftX = x;
-//     let rightX = x + width;
-//     let topY = y;
-//     let bottomY = y + height;
-//     return [leftX, rightX, topY, bottomY];
-//   }
+  coordinates() {
+    let leftX = this.x;
+    let rightX = this.x + this.width;
+    let topY = this.y;
+    let bottomY = this.y + this.height;
+    return {leftX, rightX, topY, bottomY};
+  }
   
   up() {
     this.y -= this.speed;
