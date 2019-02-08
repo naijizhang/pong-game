@@ -8,5 +8,5 @@ export const KEYS = {
   }
   export const GAP= 10;
   export const SPEED=10;
-  export const PADDLE_HEIGHT=56;
+  export const PADDLE_HEIGHT=100;
   export const BALL_RADIUS=8;

@@ -41,9 +41,18 @@ export default class Game {
       KEYS.up,
       KEYS.down
     );
+    document.addEventListener("keydown", event => {
+      if (event.key===KEYS.spaceBar) {
+        this.pause = !this.pause;
+      }
+    });
   }
 
   render() {
+    //pause game
+    if(this.pause){
+      return;
+    }
     this.gameElement.innerHTML = "";
     let svg = document.createElementNS(SVG_NS, "svg");
     svg.setAttributeNS(null, "width", this.width);
@@ -53,7 +62,7 @@ export default class Game {
 
     // rendering all elements inside SVG
     this.board.render(svg);
-    this.ball.render(svg);
+    this.ball.render(svg,this.player1, this.player2);
     this.player1.render(svg);
     this.player2.render(svg);
   }
