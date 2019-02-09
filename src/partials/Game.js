@@ -14,21 +14,21 @@ export default class Game {
     this.height = height;
 
     //for paddle starting positions
-    this.paddleWidth = 50;//8
+    this.paddleWidth = 8; //8
     this.paddleHeight = PADDLE_HEIGHT;
     this.boardGap = GAP;
 
     //for ball
-    this.ballRadius=BALL_RADIUS;
+    this.ballRadius = BALL_RADIUS;
 
     //Score
-    this.player1_score= new Score(this.width/2-50,30,30);
-    this.player2_score= new Score(this.width/2+25,30,30);
+    this.player1_score = new Score(this.width / 2 - 50, 30, 30);
+    this.player2_score = new Score(this.width / 2 + 25, 30, 30);
 
     this.gameElement = document.getElementById(this.element);
     this.board = new Board(this.width, this.height);
-    this.ball=[];
-   this.addBall();
+    this.ball = [];
+    this.addBall();
     this.player1 = new Paddle(
       this.height,
       this.paddleWidth,
@@ -48,21 +48,21 @@ export default class Game {
       KEYS.down
     );
     document.addEventListener("keydown", event => {
-      if (event.key===KEYS.spaceBar) {
+      if (event.key === KEYS.spaceBar) {
         this.pause = !this.pause;
       }
-      if (event.key==="i") {
+      if (event.key === "i") {
         this.addBall();
       }
     });
   }
-  addBall(){
-    this.ball.push(new Ball(this.ballRadius,this.width,this.height));
+  addBall() {
+    this.ball.push(new Ball(this.ballRadius, this.width, this.height));
   }
 
   render() {
     //pause game
-    if(this.pause){
+    if (this.pause) {
       return;
     }
     this.gameElement.innerHTML = "";
@@ -74,12 +74,12 @@ export default class Game {
 
     // rendering all elements inside SVG
     this.board.render(svg);
-    this.player1_score.render(svg,this.player1.score);
-    this.player2_score.render(svg,this.player2.score);
-    for (let eachBall of this.ball){
-      eachBall.render(svg,this.player1, this.player2);
+    this.player1_score.render(svg, this.player1.score);
+    this.player2_score.render(svg, this.player2.score);
+    for (let eachBall of this.ball) {
+      eachBall.render(svg, this.player1, this.player2);
     }
-    
+
     this.player1.render(svg);
     this.player2.render(svg);
   }
