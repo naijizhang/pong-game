@@ -6,6 +6,7 @@ import { BALL_RADIUS } from "../settings";
 import Board from "./Board";
 import Paddle from "./Paddle";
 import Ball from "./Ball";
+import Bonus from "./Bonus";
 import Score from "./Score";
 export default class Game {
   constructor(element, width, height) {
@@ -29,6 +30,7 @@ export default class Game {
     this.board = new Board(this.width, this.height);
     this.ball = [];
     this.addBall();
+    this.bonus=new Bonus(this.width,this.height);
     this.player1 = new Paddle(
       this.height,
       this.paddleWidth,
@@ -61,6 +63,7 @@ export default class Game {
   }
 
   render() {
+    
     //pause game
     if (this.pause) {
       return;
@@ -72,14 +75,18 @@ export default class Game {
     svg.setAttributeNS(null, "viewBox", `0 0 ${this.width} ${this.height}`);
     this.gameElement.appendChild(svg);
 
+    
+
     // rendering all elements inside SVG
     this.board.render(svg);
     this.player1_score.render(svg, this.player1.score);
     this.player2_score.render(svg, this.player2.score);
+
+    this.bonus.render(svg,this.player1,this.player2);
     for (let eachBall of this.ball) {
       eachBall.render(svg, this.player1, this.player2);
     }
-
+  
     this.player1.render(svg);
     this.player2.render(svg);
   }

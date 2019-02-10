@@ -6,7 +6,7 @@ export default class Ball {
     this.boardHeight = boardHeight;
     this.direction = 1;
     this.ping = new Audio("public/sounds/pong-01.wav");
-
+    //this.yesSound = new Audio("public/sounds/yes-1.wav");
     this.reset();
   }
   reset() {
