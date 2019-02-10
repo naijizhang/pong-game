@@ -83,6 +83,9 @@ export default class Game {
     this.player2_score.render(svg, this.player2.score);
 
     this.bonus.render(svg,this.player1,this.player2);
+    if(!this.bonus.visable){
+      this.bonus=new Bonus(this.width,this.height);
+    }
     for (let eachBall of this.ball) {
       eachBall.render(svg, this.player1, this.player2);
     }

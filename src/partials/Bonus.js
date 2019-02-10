@@ -16,8 +16,9 @@ export default class Bonus {
     this.type = Math.floor(Math.random() * 3);
     switch (this.type) {
       case 0: //paddle length
-        //length: -5 to 5
-        this.length = Math.floor(Math.random() * 20 + 10);
+        //reference:  https://stackoverflow.com/questions/8611830/javascript-random-positive-or-negative-number
+        this.random_sign = Math.cos( Math.PI * Math.round( Math.random() ) );
+        this.length = this.random_sign* Math.floor(Math.random() * 10 + 10);
         this.img = "../../public/images/increase-size-option.svg";
         break;
       case 1: //score increase
@@ -41,6 +42,7 @@ export default class Bonus {
       let { leftX, rightX, topY, bottomY } = player2.coordinates();
       if (this.x > rightX) {
         this.passed = true;
+        this.visable=false;
       }
       if (
         this.x + this.width >= leftX &&
@@ -56,6 +58,7 @@ export default class Bonus {
       let { leftX, rightX, topY, bottomY } = player1.coordinates();
       if (this.x < leftX) {
         this.passed = true;
+        this.visable=false;
       }
       if (
         this.x <= rightX &&
@@ -71,7 +74,9 @@ export default class Bonus {
   goal(player) {
     switch (this.type) {
       case 0: //paddle length
+      if(player.height+this.length>0){
         player.height += this.length;
+      }
         this.whatSound.play();
         break;
       case 1: //score increase
