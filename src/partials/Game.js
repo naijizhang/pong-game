@@ -11,8 +11,11 @@ import Score from "./Score";
 export default class Game {
   constructor(element, width, height) {
     this.element = element;
+    this.gameElement = document.getElementById(this.element);
+    //Board Size
     this.width = width;
     this.height = height;
+    this.board = new Board(this.width, this.height);
 
     //for paddle starting positions
     this.paddleWidth = 8; //8
@@ -21,18 +24,20 @@ export default class Game {
 
     //for ball
     this.ballRadius = BALL_RADIUS;
+    this.ball = [];
+    this.addBall();
 
     //Score
     this.player1_score = new Score(this.width / 2 - 50, 30, 30);
     this.player2_score = new Score(this.width / 2 + 25, 30, 30);
 
+    //Mode
     this.mode = 0;
 
-    this.gameElement = document.getElementById(this.element);
-    this.board = new Board(this.width, this.height);
-    this.ball = [];
-    this.addBall();
+    //bonus shot (bomb, donut, changelength)
     this.bonus = new Bonus(this.width, this.height);
+
+    //2 players
     this.player1 = new Paddle(
       this.height,
       this.paddleWidth,
@@ -51,10 +56,14 @@ export default class Game {
       KEYS.up,
       KEYS.down
     );
+
+    //Keyboard listener
     document.addEventListener("keydown", event => {
+      //pause
       if (event.key === KEYS.spaceBar) {
         this.pause = !this.pause;
       }
+      //Add a new ball
       if (event.key === "i") {
         this.addBall();
       }
@@ -63,6 +72,7 @@ export default class Game {
   addBall() {
     this.ball.push(new Ball(this.ballRadius, this.width, this.height));
   }
+  //automatically control a player
   ai(player) {
     if (this.ball.length > 0) {
       if (this.ball[0].y < player.y) {
@@ -73,6 +83,7 @@ export default class Game {
       }
     }
   }
+  //show text on given position
   showText(x, y, svg, content) {
     let text = document.createElementNS(SVG_NS, "text");
     text.setAttributeNS(null, "font-family", "Silkscreen Web");
@@ -83,6 +94,7 @@ export default class Game {
     text.textContent = content;
     svg.appendChild(text);
   }
+  //show the modes at the begining
   showModeSelect(svg) {
     let mode1 = "1 Player VS AI.";
     let mode2 = "1 Player VS 1 PLayer";
@@ -131,19 +143,21 @@ export default class Game {
       this.showModeSelect(svg);
       return;
     }
-
+    //render scores
     this.player1_score.render(svg, this.player1.score);
     this.player2_score.render(svg, this.player2.score);
-
+    //render the bonus balls
     this.bonus.render(svg, this.player1, this.player2);
+    //renew the bonus ball, if it is not visable
     if (!this.bonus.visable) {
       this.bonus = new Bonus(this.width, this.height);
     }
+    //show each ball
     for (let eachBall of this.ball) {
       eachBall.render(svg, this.player1, this.player2);
     }
-
-    if (this.mode === 1||this.mode===3) {
+    //setting ai. for players
+    if (this.mode === 1 || this.mode === 3) {
       if (
         this.ball.length > 0 &&
         this.ball[0].x > this.width / 2 &&
@@ -161,7 +175,7 @@ export default class Game {
         }
       }
     }
-
+    //show the two players
     this.player1.render(svg);
     this.player2.render(svg);
   }

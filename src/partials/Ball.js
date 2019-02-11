@@ -6,7 +6,7 @@ export default class Ball {
     this.boardHeight = boardHeight;
     //reference:  https://stackoverflow.com/questions/8611830/javascript-random-positive-or-negative-number
     //random direction, 1 or -1
-    this.direction = Math.cos( Math.PI * Math.round( Math.random() ) );
+    this.direction = Math.cos(Math.PI * Math.round(Math.random()));
     this.ping = new Audio("public/sounds/pong-01.wav");
     this.tailLength = 15;
     this.reset();
@@ -110,10 +110,10 @@ export default class Ball {
     let tailOpacity = 1;
     this.xlist.forEach((item, index) => {
       let circle = document.createElementNS(SVG_NS, "circle");
-      if(index!=0&&index%2===0){
+      if (index != 0 && index % 2 === 0) {
         return;
       }
-      if(index>5){
+      if (index > 5) {
         tailRadius--;
       }
       circle.setAttributeNS(null, "r", tailRadius);

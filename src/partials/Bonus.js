@@ -17,8 +17,8 @@ export default class Bonus {
     switch (this.type) {
       case 0: //paddle length
         //reference:  https://stackoverflow.com/questions/8611830/javascript-random-positive-or-negative-number
-        this.random_sign = Math.cos( Math.PI * Math.round( Math.random() ) );
-        this.length = this.random_sign* Math.floor(Math.random() * 10 + 10);
+        this.random_sign = Math.cos(Math.PI * Math.round(Math.random()));
+        this.length = this.random_sign * Math.floor(Math.random() * 10 + 10);
         this.img = "../../public/images/increase-size-option.svg";
         break;
       case 1: //score increase
@@ -42,7 +42,7 @@ export default class Bonus {
       let { leftX, rightX, topY, bottomY } = player2.coordinates();
       if (this.x > rightX) {
         this.passed = true;
-        this.visable=false;
+        this.visable = false;
       }
       if (
         this.x + this.width >= leftX &&
@@ -58,7 +58,7 @@ export default class Bonus {
       let { leftX, rightX, topY, bottomY } = player1.coordinates();
       if (this.x < leftX) {
         this.passed = true;
-        this.visable=false;
+        this.visable = false;
       }
       if (
         this.x <= rightX &&
@@ -74,9 +74,9 @@ export default class Bonus {
   goal(player) {
     switch (this.type) {
       case 0: //paddle length
-      if(player.height+this.length>0){
-        player.height += this.length;
-      }
+        if (player.height + this.length > 0) {
+          player.height += this.length;
+        }
         this.whatSound.play();
         break;
       case 1: //score increase
@@ -91,7 +91,7 @@ export default class Bonus {
   }
 
   render(svg, player1, player2) {
-    if ((!this.passed)&&this.visable) {
+    if (!this.passed && this.visable) {
       if (!this.paddleCollision(player1, player2)) {
         this.x += this.speed;
         let image = document.createElementNS(SVG_NS, "image");
@@ -105,5 +105,3 @@ export default class Bonus {
     }
   }
 }
-
-//setAttributeNS(, 'href', url);

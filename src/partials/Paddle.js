@@ -26,9 +26,9 @@ export default class Paddle {
     let rightX = this.x + this.width;
     let topY = this.y;
     let bottomY = this.y + this.height;
-    return {leftX, rightX, topY, bottomY};
+    return { leftX, rightX, topY, bottomY };
   }
-  
+
   up() {
     this.y -= this.speed;
     this.y = Math.max(0, this.y);
