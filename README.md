@@ -5,9 +5,10 @@ A modified pong game using SVGs, based on advanced Javascript. This is a good pr
 ## Features
 
 1. Balls display with motion trail.
-2. Mode Selection. You can play with either a friend or an AI. Even you can watch a game played by two AIs.
-3. Press button "i", you can add as many balls as you want.
-4. Many items can be randomly shot to each player, including bonus score, deduct score， or random paddle size changing.
+2. Top and bottom edge collision detect.
+3. Mode Selection. You can play with either a friend or an AI. Even you can watch a game played by two AIs.
+4. Press button "i", you can add as many balls as you want.
+5. Many items can be randomly shot to each player, including bonus score, deduct score， or random paddle size changing.
 
 ## Control:
 
