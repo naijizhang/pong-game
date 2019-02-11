@@ -19,15 +19,15 @@ export default class Bonus {
         //reference:  https://stackoverflow.com/questions/8611830/javascript-random-positive-or-negative-number
         this.random_sign = Math.cos(Math.PI * Math.round(Math.random()));
         this.length = this.random_sign * Math.floor(Math.random() * 10 + 10);
-        this.img = "../../public/images/increase-size-option.svg";
+        this.img = "public/images/increase-size-option.svg";
         break;
       case 1: //score increase
         this.score = 2;
-        this.img = "../../public/images/doughnut.svg";
+        this.img = "public/images/doughnut.svg";
         break;
       case 2: //score decrease
         this.score = -2;
-        this.img = "../../public/images/bomb.svg";
+        this.img = "public/images/bomb.svg";
         break;
     }
     this.whatSound = new Audio("public/sounds/what-1.wav");
