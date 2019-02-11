@@ -4,9 +4,10 @@ export default class Ball {
     this.radius = radius;
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
-    this.direction = 1;
+    //reference:  https://stackoverflow.com/questions/8611830/javascript-random-positive-or-negative-number
+    //random direction, 1 or -1
+    this.direction = Math.cos( Math.PI * Math.round( Math.random() ) );
     this.ping = new Audio("public/sounds/pong-01.wav");
-    //this.yesSound = new Audio("public/sounds/yes-1.wav");
     this.tailLength = 15;
     this.reset();
   }
