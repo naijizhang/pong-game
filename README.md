@@ -13,9 +13,9 @@ A modified pong game using SVGs, based on advanced Javascript. This is a good pr
 
 ## Control:
 **Mode Select:**
-* 1. Player 1 vs Computer
-* 2. Player 1 vs Player 2
-* 3. Computer vs Computer
+1. Player 1 vs Computer
+2. Player 1 vs Player 2
+3. Computer vs Computer
 
 **Player 1:**
 * a: up
@@ -25,7 +25,7 @@ A modified pong game using SVGs, based on advanced Javascript. This is a good pr
 * ▲ : up
 * ▼: down
 
-* Add a Ball : i
+**Add a Ball : i**
 
 ## Setup
 
